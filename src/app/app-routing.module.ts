@@ -2,13 +2,15 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
+import { LoginComponent } from './demo/components/auth/login/login.component';
 import { LandingComponent } from './demo/components/landing/landing.component';
 
 @NgModule({
     imports: [
-        RouterModule.forRoot([
+        RouterModule.forRoot([        
+            { path: '', component: LandingComponent },
             {
-                path: '', component: AppLayoutComponent,
+                path: 'app', component: AppLayoutComponent,
                 children: [ 
                     { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
@@ -16,7 +18,6 @@ import { LandingComponent } from './demo/components/landing/landing.component';
                     { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
                     { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },                                      
-
                 ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
