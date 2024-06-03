@@ -22,15 +22,16 @@ export class LoginComponent {
     constructor(public layoutService: LayoutService, private router: Router) { }
 
     login() {
-        // Aquí pones la lógica de autenticación
+        // Lógica de autenticación
         // Simulando una autenticación exitosa
-        const isAuthenticated = true;
+        const isAuthenticated =false;
 
         if (isAuthenticated) {
             // Si la autenticación es exitosa, redirige al AppLayout
             this.router.navigate(['/app']);
         } else {
             // Manejar el error de autenticación
+            this.router.navigate(['/auth/error']);
             console.error('Autenticación fallida');
         }
     }

@@ -7,10 +7,14 @@
                     <div class="flex justify-content-center align-items-center bg-pink-500 border-circle" style="height:3.2rem; width:3.2rem;">
                         <i class="pi pi-fw pi-exclamation-circle text-2xl text-white"></i>
                     </div>
-                    <h1 class="text-900 font-bold text-5xl mb-2">Error Occured</h1>
-                    <span class="text-600 mb-5">Requested resource is not available.</span>
+                    <h1 class="text-900 font-bold text-5xl mb-2">Se produjo un error</h1>
+                    <span class="text-600 mb-5">No se pudo iniciar sesión. Contacta un administrador o verifica tu estado de matrícula.</span>
                     <img src="assets/demo/images/error/asset-error.svg" alt="Error" class="mb-5" width="80%">
-                    <button pButton pRipple icon="pi pi-arrow-left" label="Go to Dashboard" class="p-button-text" [routerLink]="['/']"></button>
+                    <div>
+                        <button pButton pRipple icon="pi pi-arrow-left" label="Volver al inicio" class="p-button-text" [routerLink]="['']"></button>                
+                        <button pButton pRipple icon="pi pi-arrow-right" label="Revisar matricula" class="p-button-text" [routerLink]="['']"></button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
