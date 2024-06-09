@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
     selector: 'app-menu',
@@ -10,12 +11,12 @@ export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService, private usuarioService: UsuarioService) { }
 
     ngOnInit() {
         this.model = [
             {
-                label: 'INICIO',
+                label: 'Inicio',
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/app'] }
                 ]
@@ -65,13 +66,14 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['']
                     },
                     {
-                        label: 'Auth',
+                        label: 'Usuario',
                         icon: 'pi pi-fw pi-user',
                         items: [
                             {
-                                label: 'Login',
+                                label: 'Cerrar session',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login']
+                                command: () => this.logout(),  // Llama al método logout
+                                routerLink: ['/auth/login'],                                
                             },
                             {
                                 label: 'Error',
@@ -161,5 +163,8 @@ export class AppMenuComponent implements OnInit {
                 ]
             }
         ];
+    }
+    logout() {
+        this.usuarioService.logout();        
     }
 }

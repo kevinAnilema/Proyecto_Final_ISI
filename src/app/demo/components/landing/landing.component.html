@@ -31,8 +31,9 @@
                         </a>
                     </li>
                 </ul>
-                <div class="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">                    
-                    <button pButton pRipple label="Iniciar sesión" onclick="window.location.href='/auth/login';" class="p-button-rounded border-none ml-5 font-light line-height-2 bg-blue-500 text-white"></button>
+                <div class="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
+                    <button pButton pRipple *ngIf="!isLoggedIn" label="Iniciar sesión" (click)="navigateTo('/auth/login')" class="p-button-rounded border-none ml-5 font-light line-height-2 bg-blue-500 text-white"></button>
+                    <button pButton pRipple *ngIf="isLoggedIn" label="Aula Virtual" (click)="navigateTo('/app/')" class="p-button-rounded border-none ml-5 font-light line-height-2 bg-blue-500 text-white"></button>
                 </div>
             </div>
         </div>
