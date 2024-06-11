@@ -44,4 +44,10 @@ export class UsuarioService {
       return of(result as T);
     };
   }
+  registerUsuario(usuario: any): Observable<any> {
+    return this.http.post(`${this.API_USER_LOGIN}/usuario`, usuario)
+      .pipe(
+        catchError(this.handleError<any>('registerUsuario'))
+      );
+  }
 }

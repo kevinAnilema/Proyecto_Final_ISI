@@ -7,6 +7,8 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { RegistrarseRoutingModule } from './registrarse-routing.module';
 import { RegistrarseComponent } from './registrarse.component';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     imports: [
@@ -16,7 +18,10 @@ import { RegistrarseComponent } from './registrarse.component';
         CheckboxModule,
         InputTextModule,
         FormsModule,
-        PasswordModule
+        PasswordModule,
+		InputMaskModule,
+		InputTextModule,
+		ToastModule
     ],
     declarations: [RegistrarseComponent]
 })

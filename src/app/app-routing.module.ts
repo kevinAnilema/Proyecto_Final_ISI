@@ -4,13 +4,14 @@ import { NotfoundComponent } from './demo/components/notfound/notfound.component
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { LoginComponent } from './demo/components/auth/login/login.component';
 import { LandingComponent } from './demo/components/landing/landing.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([        
             { path: '', component: LandingComponent },
             {
-                path: 'app', component: AppLayoutComponent,
+                path: 'app', component: AppLayoutComponent, canActivate: [AuthGuard],
                 children: [ 
                     { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
