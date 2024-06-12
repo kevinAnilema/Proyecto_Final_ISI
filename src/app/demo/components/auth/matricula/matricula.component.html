@@ -1,0 +1,58 @@
+<p>matricula works!</p>
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
+        <span>ISI</span>
+    </a>
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+</div>
+<div class="text-center mb-5" style="margin-top: 80px;">
+    <div class="text-900 text-3xl font-medium mb-3">¡Inscríbete ahora ISI y alcanza tus metas!</div>
+    <span class="text-600 font-medium">Completa el siguiente formulario para formalizar tu matrícula en el ISI y dar el primer paso hacia tu futuro profesional.</span>
+</div>
+<div>
+    <div class="flex flex-column align-items-center justify-content-center">
+        <div style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-5 px-8 sm:px-8" style="border-radius: 53px; margin:20px,0px,20px,10px;">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="cedula">Cédula</label>
+                        <input pInputText id="cedula" [(ngModel)]="cedula" name="cedula" type="text" autocomplete="off">
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="state">Periodo</label>
+                        <p-dropdown [options]="dropdownItemsPeriodo" optionLabel="name" [(ngModel)]="selectPeriodo"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="state">Semestre</label>
+                        <p-dropdown [options]="dropdownItemsSemestre" optionLabel="name" [(ngModel)]="selectSemestre"></p-dropdown>
+                    </div>   
+                    <div class="card field col-12 md:col-6">
+                        <h5>Detalles</h5>
+                        <label for="">Nombre:</label>
+
+                        <br><label for="">Periodo:</label>
+                        <br><label for="">Semestre</label>
+                    </div>
+                    
+                    <div  class="card, field col-12 md:col-6">
+                        <span class="p-buttonset">
+                            <button pButton pRipple label="Matricularse" (click)="registrarse()" icon="pi pi-check"></button>
+                            <button pButton pRipple label="Cancelar" icon="pi pi-times"></button>
+                        </span>
+                    </div>
+                </div>
+            <p-toast key="tst"></p-toast>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="layout-footer">
+        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="Logo" height="20" class="mr-2"/>
+        by -
+        <span class="font-medium ml-2">Kevin Anilema - Paul Ruiz</span>
+    </div>
+</footer>
