@@ -28,7 +28,7 @@ import { LoginModule } from './demo/components/auth/login/login.module';
         AppLayoutModule,
         FormsModule,
         HttpClientModule,
-        LoginModule
+        LoginModule,
     ],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },

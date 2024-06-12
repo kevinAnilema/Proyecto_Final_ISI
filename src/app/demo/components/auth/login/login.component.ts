@@ -62,11 +62,15 @@ export class LoginComponent {
                   this.dato = this.usuarioService.isLoggedIn()
                   console.log("Valor asignado a localStorage:",this.dato);
                   }
+                  this.usuarioService.setEstado(true);
                   this.router.navigate(['/app/']);
-                } else {
-                  console.log('Usuario inactivo');
-                  const mensaje = 'Este usuario no está activo. Verifique su estado de matrícula';
-                  this.mostrarAlerta(mensaje);
+                } else {                                   
+                  //console.log('Usuario inactivo');
+                  //const mensaje = 'Este usuario no está activo. Verifique su estado de matrícula';
+                  //this.mostrarAlerta(mensaje);
+                  this.usuarioService.setSession(true);
+                  this.usuarioService.setEstado(false);
+                  this.router.navigate(['/app/']); 
                 }
               },
               error => {

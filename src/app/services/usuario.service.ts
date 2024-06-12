@@ -27,7 +27,6 @@ export class UsuarioService {
 
   setSession(token: boolean): void {
     localStorage.setItem('token', String(token)); // Convertir booleano a cadena
-    console.log(localStorage);
   }
 
   logout(): void {
@@ -36,6 +35,16 @@ export class UsuarioService {
 
   isLoggedIn(): boolean {
     return localStorage.getItem('token') === 'true'; // Comparar con la cadena 'true'
+  }
+
+  setEstado(estadoMatricula: boolean): void {
+    localStorage.setItem('estado', String(estadoMatricula)); // Convertir booleano a cadena
+  }
+  
+  isActive(): boolean {
+    const estado = localStorage.getItem('estado');
+    console.log(`Estado de matrícula: ${estado}`); // Log para verificar el valor
+    return estado === 'true';
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
