@@ -25,6 +25,7 @@ export class RegistrarseComponent {
   email: string = '';
   password: string = '';
   mensaje = '';
+  id_Rol=1;
 
   constructor(
     public layoutService: LayoutService,
@@ -52,9 +53,11 @@ export class RegistrarseComponent {
       telefono: this.telefono,
       correo: this.email,
       clave: this.password,
-      id_rol:'1'
+      rol: { idRol: this.id_Rol } // Asignación correcta del id_rol aquí
     }).subscribe(
-      response => {                
+      response => {     
+        console.log('id rol',this.id_Rol)           
+        console.log('datos para el registro',this.usuarioService)
         this.router.navigate(['/auth/login']);
       },
       error => {
@@ -62,5 +65,8 @@ export class RegistrarseComponent {
         console.error('Error en el registro:', error);
       }
     );
+  }
+  regresar() {
+    this.router.navigate(['/']);
   }
 }

@@ -24,7 +24,13 @@
                         <a href="/auth/registrarse" class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Registrarme ahora</a>                        
                     </div>  
                     <p-toast key="tst"></p-toast>                                  
-                    <button pButton pRipple label="Iniciar sesión" class="w-full p-3 text-xl" (click)="login()"></button>                              
+                    <div class="w-full p-3 text-xl" style="color: var(--primary-color)">
+                        <span class="p-buttonset">
+                            <button *ngIf="ocultarBotonInicarSesion" pButton pRipple label="Iniciar sesión" icon="pi pi-check" (click)="login()"></button>
+                            <button pButton pRipple label="Regresar" icon="pi pi-times" (click)="regresar()"></button>
+                            <button *ngIf="mostrarMatricularse" pButton pRipple label="Matricularse ahora" icon="pi pi-user-plus" (click)="matricularse()"></button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

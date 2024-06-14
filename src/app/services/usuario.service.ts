@@ -9,7 +9,9 @@ import { catchError } from 'rxjs/operators';
 export class UsuarioService {
   private API_USER_LOGIN = 'http://localhost:8091/avirtual';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   getUsuario(correo: string, clave: string): Observable<any> {
     return this.http.get(`${this.API_USER_LOGIN}/usuario/login/${correo}/${clave}`)
@@ -43,7 +45,7 @@ export class UsuarioService {
   
   isActive(): boolean {
     const estado = localStorage.getItem('estado');
-    console.log(`Estado de matrícula: ${estado}`); // Log para verificar el valor
+    console.log(`Estado de matrícula: ${estado}`);
     return estado === 'true';
   }
 

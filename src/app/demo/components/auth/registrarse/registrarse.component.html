@@ -35,6 +35,12 @@
                             <p-password id="password" [(ngModel)]="password" [toggleMask]="true" inputStyleClass="w-full p-3 md:w-30rem" autocomplete="new-password"></p-password>
                         </div>
                         <button pButton pRipple label="Iniciar sesión" class="w-full p-3 text-xl" (click)="registrarse()"></button>
+                        <div  class="card, field col-12 md:col-6">
+                            <span class="p-buttonset">
+                                <button pButton pRipple label="Registrarse" (click)="registrarse()" icon="pi pi-check"></button>
+                                <button pButton pRipple label="Cancelar" (click)=regresar() icon="pi pi-times"></button>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <p-toast key="tst"></p-toast>
