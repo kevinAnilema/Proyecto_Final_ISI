@@ -18,29 +18,51 @@
             <div class="w-full surface-card py-5 px-8 sm:px-8" style="border-radius: 53px; margin:20px,0px,20px,10px;">
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12 md:col-6">
-                        <label for="cedula">Cédula</label>
-                        <input pInputText id="cedula" [(ngModel)]="cedula" name="cedula" type="text" autocomplete="off">
+                        <span class="p-float-label">
+                            <p-dropdown
+                                id="periodo"
+                                inputId="dropdown"
+                                [autoDisplayFirst]="false"
+                                [options]="dropdownItemsPeriodo"
+                                [(ngModel)]="selectPeriodo"
+                                optionLabel="name"
+                            ></p-dropdown>
+                            <label for="dropdown">Periodo</label>
+                        </span>
                     </div>
-                    <div class="field col-12 md:col-3">
-                        <label htmlFor="state">Periodo</label>
-                        <p-dropdown [options]="dropdownItemsPeriodo" optionLabel="name" [(ngModel)]="selectPeriodo"></p-dropdown>
+                    <!--div class="field col-12 md:col-3">                        
+                        <p-dropdown id="periodo" [options]="dropdownItemsPeriodo" optionLabel="name" [(ngModel)]="selectPeriodo" placeholder="Seleccionar Periodo"></p-dropdown>                
+                    </div-->
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <p-dropdown
+                                id="semestre"
+                                inputId="dropdown"
+                                [autoDisplayFirst]="false"
+                                [options]="dropdownItemsSemestre"
+                                [(ngModel)]="selectSemestre"
+                                optionLabel="name"
+                            ></p-dropdown>
+                            <label for="dropdown">Semestre</label>
+                        </span>
                     </div>
-                    <div class="field col-12 md:col-3">
-                        <label htmlFor="state">Semestre</label>
-                        <p-dropdown [options]="dropdownItemsSemestre" optionLabel="name" [(ngModel)]="selectSemestre"></p-dropdown>
-                    </div>   
+                    <!--div class="field col-12 md:col-3">                        
+                        <p-dropdown id="semestre" [options]="dropdownItemsSemestre" [(ngModel)]="selectSemestre" optionLabel="name" placeholder="Seleccionar Semestre"></p-dropdown>
+                    </div-->   
                     <div class="card field col-12 md:col-6">
                         <h5>Detalles</h5>
-                        <label for="">Nombre:</label>
-
-                        <br><label for="">Periodo:</label>
-                        <br><label for="">Semestre</label>
+                        <label for="estudiante">Estudiante: {{ nombre }}</label>
+                        <br><label for="estudiante">Cedula: {{cedula}}</label>
+                        <br>
+                        <label for="periodo">Periodo: {{ selectPeriodo?.name }}</label>
+                        <br>
+                        <label for="semestre">Semestre: {{ selectSemestre?.name }}</label>
                     </div>
                     
                     <div  class="card, field col-12 md:col-6">
                         <span class="p-buttonset">
-                            <button pButton pRipple label="Matricularse" (click)="registrarse()" icon="pi pi-check"></button>
-                            <button pButton pRipple label="Cancelar" icon="pi pi-times"></button>
+                            <button pButton pRipple label="Matricularse" (click)="registrarMatricula()" icon="pi pi-check"></button>
+                            <button pButton pRipple label="Cancelar" (click)=regresar() icon="pi pi-times"></button>
                         </span>
                     </div>
                 </div>
