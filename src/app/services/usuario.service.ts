@@ -55,6 +55,20 @@ export class UsuarioService {
       return of(result as T);
     };
   }
+
+  verificarDbCedula(cedula:string): Observable<any> {
+    console.log(`Verificando usuario con cédula: ${cedula}`);
+    return this.http.get<any>(`${this.API_USER_LOGIN}/usuario/registro/${cedula}`)
+    .pipe(
+      catchError(this.handleError<any>('UsuarioYaregistrado'))
+    );
+  }
+  verificarDBCorreo(correo:string): Observable<any> {
+    return this.http.get<any>(`${this.API_USER_LOGIN}/usuario/correo/${correo}`)
+    .pipe(
+      catchError(this.handleError<any>('CorreoYaregistrado'))
+    );
+  }
   registerUsuario(usuario: any): Observable<any> {
     return this.http.post(`${this.API_USER_LOGIN}/usuario`, usuario)
       .pipe(

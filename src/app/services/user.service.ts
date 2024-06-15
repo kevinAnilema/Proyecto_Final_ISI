@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
   private user: any = null;
   private datosUser: any = null;
+  private permisoMatricula:boolean=false;
 
   setUser(user: any) {
     this.user = user;
@@ -22,7 +23,13 @@ export class UserService {
   getDatosUser() {
     return this.datosUser;
   }
+  setpermisoMatricula(permiso: any) {
+    this.permisoMatricula =permiso;
+  }
 
+  getpermisoMatricula() {
+    return this.permisoMatricula;
+  }
   isLoggedIn() {
     return this.user !== null;
   }
