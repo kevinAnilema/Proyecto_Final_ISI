@@ -39,13 +39,46 @@ export class RegistrarseComponent {
   }
 
   registrarse() {
+    // Validaciones de entrada
     if (!this.nombre || !this.cedula || !this.direccion || !this.telefono || !this.email || !this.password) {
       const mensaje = 'Ingrese todos los datos';
       this.mostrarError(mensaje);
       return;
     }
-
-    // Lógica para registrar al usuario
+  
+    // Verificación de usuario existente
+    this.usuarioService.verificarDbCedula(this.cedula).subscribe(
+      (usuarioExistente: any) => {
+        if (usuarioExistente) {
+          this.mostrarError('Error en el registro. Usuario ya registrado.');
+          console.log('Error en el registro: usuario ya registrado');
+        } else {
+          // Verificación de correo electrónico
+          this.usuarioService.verificarDBCorreo(this.email).subscribe(
+            (correoExistente: any) => {
+              if (correoExistente) {
+                this.mostrarError('Error en el registro. Correo ya registrado.');
+                console.log('Error en el registro: Correo ya registrado');
+              } else {
+                // Si el usuario como el correo no existen en la BD, procedemos con el registro
+                this.registrarNuevoUsuario();
+              }
+            },
+            error => {
+              this.mostrarError('Error en la verificación del correo electrónico. Por favor, inténtelo de nuevo más tarde.');
+              console.error('Error en la verificación del correo electrónico:', error);
+            }
+          );
+        }
+      },
+      error => {
+        this.mostrarError('Error en la verificación del usuario. Por favor, inténtelo de nuevo más tarde.');
+        console.error('Error en la verificación del usuario:', error);
+      }
+    );
+  }
+  
+  registrarNuevoUsuario() {
     this.usuarioService.registerUsuario({
       nombre: this.nombre,
       cedula: this.cedula,
@@ -53,11 +86,11 @@ export class RegistrarseComponent {
       telefono: this.telefono,
       correo: this.email,
       clave: this.password,
-      rol: { idRol: this.id_Rol } // Asignación correcta del id_rol aquí
+      rol: { idRol: this.id_Rol } // Asignación correcta del id_rol
     }).subscribe(
-      response => {     
-        console.log('id rol',this.id_Rol)           
-        console.log('datos para el registro',this.usuarioService)
+      response => {
+        console.log('id rol', this.id_Rol);
+        console.log('datos para el registro', response);
         this.router.navigate(['/auth/login']);
       },
       error => {
@@ -66,7 +99,9 @@ export class RegistrarseComponent {
       }
     );
   }
+
   regresar() {
     this.router.navigate(['/']);
   }
+  
 }

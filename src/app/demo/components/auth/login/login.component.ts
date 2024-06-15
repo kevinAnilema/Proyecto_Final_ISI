@@ -71,12 +71,13 @@ export class LoginComponent {
                   this.usuarioService.setEstado(true);
                   this.router.navigate(['/app/']);
                 } else {                                   
-                  const mensaje = 'Este usuario no está activo. Verifique su estado de matrícula';
+                  const mensaje = 'Este usuario no está activo. Puede matricularse ahora';
                   this.mostrarAlerta(mensaje);
                   this.userService.setUser(user); // Guardo los datos del usuario
                   console.log(user);
-                  this.mostrarMatricularse = true; // Mostrar el botón "Matricularse ahora"
+                  this.mostrarMatricularse = true; // Mostrar el botón "Matricularse ahora"                  
                   this.ocultarBotonInicarSesion=false;
+                  this.userService.setpermisoMatricula(true);
                 }
               },
               error => {
