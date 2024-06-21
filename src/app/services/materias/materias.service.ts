@@ -6,15 +6,15 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CrudService {
+export class MateriasService {
   private API_SERVIDOR = 'http://localhost:8091/avirtual';
-  
+
   constructor(private http: HttpClient) { }
 
-  postMatricula(matricula: any): Observable<any> {
-    return this.http.post(`${this.API_SERVIDOR}/matricula`,matricula)
+  getMaterias(semestre: any): Observable<any> {
+    return this.http.get(`${this.API_SERVIDOR}/materia/${semestre}`)
       .pipe(
-        catchError(this.handleError<any>('RegistroMatricula'))
+        catchError(this.handleError<any>('No se ha podido encontrar las materias'))
       );
   }
 
@@ -25,4 +25,3 @@ export class CrudService {
     };
   }
 }
- 
