@@ -4,6 +4,7 @@ import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { MateriasService } from 'src/app/services/materias/materias.service';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -19,8 +20,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     chartOptions: any;
 
     subscription!: Subscription;
+    public materias: any[]; // Variable para almacenar las materias
 
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
+    constructor(private productService: ProductService, public layoutService: LayoutService, private materiasService: MateriasService) {
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
         .subscribe((config) => {
@@ -36,6 +38,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },
             { label: 'Remove', icon: 'pi pi-fw pi-minus' }
         ];
+        this.materiasService.getMaterias(1).subscribe(
+            data=>{
+                console.log(data);
+                this.materias = data; 
+            },
+            error=>{
+                console.log('Error al obtener las materias:', error)
+            }
+        )
+        
     }
 
     initChart() {
@@ -45,10 +57,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
         this.chartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
             datasets: [
                 {
-                    label: 'First Dataset',
+                    label: 'Avance en contenido',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
                     backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
@@ -56,7 +68,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                     tension: .4
                 },
                 {
-                    label: 'Second Dataset',
+                    label: 'Rendimiento academico',
                     data: [28, 48, 40, 19, 86, 27, 90],
                     fill: false,
                     backgroundColor: documentStyle.getPropertyValue('--green-600'),
