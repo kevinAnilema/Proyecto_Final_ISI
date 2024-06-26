@@ -68,22 +68,17 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Usuario',
                         icon: 'pi pi-fw pi-user',
-                        items: [
+                        items: [                            
+                            {
+                                label: 'Datos',
+                                icon: 'pi pi-id-card',
+                                routerLink: ['/app/pages/usuario']
+                            },
                             {
                                 label: 'Cerrar session',
                                 icon: 'pi pi-fw pi-sign-in',
-                                command: () => this.logout(),  // Llama al método logout
-                                routerLink: ['/auth/login'],                                
-                            },
-                            {
-                                label: 'Error',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error']
-                            },
-                            {
-                                label: 'Access Denied',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/auth/access']
+                                command: () => this.logout(),  // Llama al método logout para borrar el token
+                                routerLink: ['app/auth/login'],                                
                             }
                         ]
                     },
@@ -105,7 +100,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Empty',
                         icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/app/pages/empty']
+                        routerLink: ['/app/pages/usuario']
                     },
                 ]
             },
