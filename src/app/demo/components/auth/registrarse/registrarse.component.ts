@@ -89,8 +89,8 @@ export class RegistrarseComponent {
       rol: { idRol: this.id_Rol } // Asignación correcta del id_rol
     }).subscribe(
       response => {
-        console.log('id rol', this.id_Rol);
-        console.log('datos para el registro', response);
+        //console.log('id rol', this.id_Rol);
+        //console.log('datos para el registro', response);
         this.router.navigate(['/auth/login']);
       },
       error => {
