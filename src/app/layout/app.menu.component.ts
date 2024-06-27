@@ -78,7 +78,7 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Cerrar session',
                                 icon: 'pi pi-fw pi-sign-in',
                                 command: () => this.logout(),  // Llama al método logout para borrar el token
-                                routerLink: ['app/auth/login'],                                
+                                routerLink: ['/auth/login'],                                
                             }
                         ]
                     },

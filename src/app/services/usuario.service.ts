@@ -27,6 +27,15 @@ export class UsuarioService {
       );
   }
 
+  putUsuario( usuario: any): Observable <any>{
+    return this.http.put(`${this.API_USER_LOGIN}/usuario`,usuario)
+      .pipe(
+        catchError(this.handleError<any>('PutUsuario'))
+      );
+  }
+
+
+
   setSession(token: boolean): void {
     localStorage.setItem('token', String(token)); // Convertir booleano a cadena
   }

@@ -62,14 +62,22 @@ export class LoginComponent {
                   console.log('Datos del usuario activo:', usuarioActivo);
                   // Llamada a setSession
                   if (this.rememberMe) {                  
-                    this.usuarioService.setSession(true);
+                    this.usuarioService.setSession(true);                    
+                    this.usuarioService.setEstado(true);
                     this.userService.setDatosUser(usuarioActivo); // Guardo los datos del usuario
                     console.log('Datos guardados con membresia activa:',usuarioActivo);
                     this.dato = this.usuarioService.isLoggedIn();
                     console.log("Valor asignado a localStorage:", this.dato);
+                    this.router.navigate(['/app/']);
                   }
-                  this.usuarioService.setEstado(true);
-                  this.router.navigate(['/app/']);
+                  else{                                      
+                    this.usuarioService.setSession(true);
+                    this.usuarioService.setEstado(true);
+                    this.dato = this.usuarioService.isLoggedIn();
+                    this.userService.setDatosUser(usuarioActivo);
+                    this.router.navigate(['/app/']);
+                  }
+                  
                 } else {                                   
                   const mensaje = 'Este usuario no está activo. Puede matricularse ahora';
                   this.mostrarAlerta(mensaje);
