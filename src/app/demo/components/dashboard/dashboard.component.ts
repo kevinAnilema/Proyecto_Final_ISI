@@ -5,6 +5,8 @@ import { ProductService } from '../../service/product.service';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { MateriasService } from 'src/app/services/materias/materias.service';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -18,11 +20,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
     chartData: any;
 
     chartOptions: any;
+    public DatosUser: any[]; 
+    idSemestre='';
+    idmateria='';
 
     subscription!: Subscription;
     public materias: any[]; // Variable para almacenar las materias
 
-    constructor(private productService: ProductService, public layoutService: LayoutService, private materiasService: MateriasService) {
+    constructor(
+        private productService: ProductService, 
+        public layoutService: LayoutService, 
+        private materiasService: MateriasService,
+        private datosUsuario: UserService,
+        private router: Router // Inyecta el enrutador
+    )        
+    {
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
         .subscribe((config) => {
@@ -33,12 +45,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.initChart();
         this.productService.getProductsSmall().then(data => this.products = data);
-
+        this.DatosUser = this.datosUsuario.getDatosUser();
+    if (this.DatosUser && this.DatosUser.length > 0) {
+      const semestre = this.DatosUser[0].semestre;
+      this.idSemestre=semestre.idSemestre
+    } else {
+      console.error('No se encontraron datos de usuario');
+    }
         this.items = [
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },
             { label: 'Remove', icon: 'pi pi-fw pi-minus' }
         ];
-        this.materiasService.getMaterias(1).subscribe(
+
+        this.materiasService.getMaterias(this.idSemestre).subscribe(
             data=>{
                 console.log(data);
                 this.materias = data; 
@@ -48,6 +67,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             }
         )
         
+    }
+
+    selectMateria(idMateria: string) {
+        this.router.navigate(['app/pages/clase/', idMateria]);
     }
 
     initChart() {
