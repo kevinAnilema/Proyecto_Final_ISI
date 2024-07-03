@@ -19,6 +19,7 @@ export class DatosService {
         catchError(this.handleError<any>('getPeriodos'))
       );
   }
+
   getSemestres(): Observable<any> {
     return this.http.get<any>(`${this.API_CONSULTAS}/semestre`)
       .pipe(
@@ -26,6 +27,16 @@ export class DatosService {
       );
   }
 
+  getClases(materia: any): Observable<any> {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json'
+     }};
+    return this.http.post(`${this.API_CONSULTAS}/clase/materia`, materia,options)
+      .pipe(
+        catchError(this.handleError<any>('getClases'))
+      );
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
