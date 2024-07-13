@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class LandingComponent implements OnInit {
 
   isLoggedIn: boolean = false;
-  tienePermisoMatricula: boolean = false; // Agregar propiedad para verificar permiso de matrícula
+  tienePermisoMatricula: boolean = false;
 
   constructor(
     public layoutService: LayoutService,

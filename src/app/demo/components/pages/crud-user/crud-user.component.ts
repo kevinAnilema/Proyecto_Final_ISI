@@ -19,7 +19,7 @@ export class CrudUserComponent implements OnInit{
   clave='';
   direccion='';
   telefono='';
-  rol='';
+  rol=''; 
   fechaMatricula=''
   nombrePeriodo=''
   desdePeriodo=''
@@ -31,6 +31,7 @@ export class CrudUserComponent implements OnInit{
     private datosUsuerioService: UserService, 
     private servicioUsuario: UsuarioService,
     private service: MessageService,
+    private userService: UserService,
   ) { }
 
 
@@ -87,12 +88,29 @@ export class CrudUserComponent implements OnInit{
     };
     this.servicioUsuario.putUsuario(usuarioActualizado).subscribe(
       response=>{        
+        console.log('Datos antes de actualizar: ',this.userService.getDatosUser())
         this.mostrarMensaje('Usuario actualizado');
         this.hideDialog();
-        this.datosUsuerioService.setDatosUser([ { usuario: usuarioActualizado } ]);
+        this.servicioUsuario.getMatriculaActiva(parseInt(this.id)).subscribe(
+          usuarioActivoActualizado=>{
+            if (usuarioActivoActualizado && usuarioActivoActualizado.length > 0 && usuarioActivoActualizado[0].activo) {
+              console.log('Datos del usuario activo:', usuarioActivoActualizado);
+              this.userService.clearUser()
+              console.log('datos limpiados',this.userService.getDatosUser())
+              this.userService.setDatosUser(usuarioActivoActualizado)
+              //this.datosUsuerioService.setDatosUser([ { usuario: usuarioActivoActualizado } ]);              
+              console.log('Datos despues de actualizar: ',usuarioActivoActualizado)
+              console.log(this.userService.getDatosUser())                          
+            }
+          }
+        )
+
+
+
+       
       },
       error=>{
-        this.mostrarMensajeError('Error en la verificación del correo electrónico. Por favor, inténtelo de nuevo más tarde.');
+        this.mostrarMensajeError('Error en la actualizacion de datos. Por favor, inténtelo de nuevo más tarde.');
         console.log('Error al actualizar datos del usuario')
       }    
     )
