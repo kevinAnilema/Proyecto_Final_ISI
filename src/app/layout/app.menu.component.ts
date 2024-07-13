@@ -21,7 +21,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/app'] }
                 ]
             },
-            {
+            /*{
                 label: 'UI Components',
                 items: [
                     { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/app/uikit/formlayout'] },
@@ -56,15 +56,17 @@ export class AppMenuComponent implements OnInit {
                     { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: [''], target: '_blank' },
                 ]
             },
+            */
             {
-                label: 'Pages',
+                label: 'Información',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
+                    /*
                     {
                         label: 'Landing',
                         icon: 'pi pi-fw pi-globe',
                         routerLink: ['']
-                    },
+                    },*/
                     {
                         label: 'Usuario',
                         icon: 'pi pi-fw pi-user',
@@ -81,7 +83,7 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/auth/login'],                                
                             }
                         ]
-                    },
+                    },/*
                     {
                         label: 'Crud',
                         icon: 'pi pi-fw pi-pencil',
@@ -101,9 +103,9 @@ export class AppMenuComponent implements OnInit {
                         label: 'Empty',
                         icon: 'pi pi-fw pi-circle-off',
                         routerLink: ['/app/pages/usuario']
-                    },
+                    },*/
                 ]
-            },
+            },/*
             {
                 label: 'Hierarchy',
                 items: [
@@ -156,7 +158,7 @@ export class AppMenuComponent implements OnInit {
                         label: 'View Source', icon: 'pi pi-fw pi-search', url: [''], target: '_blank'
                     }
                 ]
-            }
+            }*/
         ];
     }
     logout() {

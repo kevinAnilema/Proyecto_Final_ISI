@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
-  private API_SERVIDOR = 'http://localhost:8091/avirtual';
+  private API_SERVIDOR = environment.API;
   
   constructor(private http: HttpClient) { }
 

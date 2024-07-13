@@ -25,14 +25,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     idmateria='';
 
     subscription!: Subscription;
-    public materias: any[]; // Variable para almacenar las materias
+    public materias: any[];
 
     constructor(
         private productService: ProductService, 
         public layoutService: LayoutService, 
         private materiasService: MateriasService,
         private datosUsuario: UserService,
-        private router: Router // Inyecta el enrutador
+        private router: Router
     )        
     {
         this.subscription = this.layoutService.configUpdate$
@@ -46,7 +46,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.initChart();
         this.productService.getProductsSmall().then(data => this.products = data);
         this.DatosUser = this.datosUsuario.getDatosUser();
-    if (this.DatosUser && this.DatosUser.length > 0) {
+        //console.log(this.DatosUser)
+    if (this.DatosUser) {
       const semestre = this.DatosUser[0].semestre;
       this.idSemestre=semestre.idSemestre
     } else {
