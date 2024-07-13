@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private API_USER_LOGIN = 'http://localhost:8091/avirtual';
+  private API_USER_LOGIN = environment.API;
 
   constructor(
     private http: HttpClient,
